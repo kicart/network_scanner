@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-
 import scapy.all as scapy
 import optparse
-
 
 
 def get_arguments():
@@ -22,7 +20,6 @@ def scan(ip):
     # will display less information in the command prompt.
     arp_request_broadcast = broadcast/arp_request
     answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]
-
     clients_list = []
 
     #Parsing the values captured in the answered list, using a loop to iterate over the list to return the
@@ -30,8 +27,7 @@ def scan(ip):
     for element in answered_list:
         client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc}
         clients_list.append(client_dict)
-
-    return(clients_list)
+    return clients_list
 
 
 def print_result(results_list):
@@ -39,8 +35,6 @@ def print_result(results_list):
 
     for client in results_list:
         print(client["ip"] + "\t\t" + client["mac"])
-
-
 
 
 options = get_arguments()
